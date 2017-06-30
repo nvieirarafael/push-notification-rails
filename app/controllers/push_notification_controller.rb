@@ -1,7 +1,12 @@
-class PushNotificationController < ApplicationController
+class PushNotificationController < ActionController::API
 
   def register_device
-    render plain: 'register_device encontrado!'
+    device = Device.find_or_create_by register: params[:register]
+
+    render json: {
+      message: 'Registro efetuado com sucesso!',
+      device: device
+    }
   end
 
 end
